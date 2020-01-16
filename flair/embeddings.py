@@ -2154,7 +2154,7 @@ class PooledFlairEmbeddings(TokenEmbeddings):
                             self.word_count[token.text] = 1
                         else:
                             aggregated_embedding = self.aggregate_op(
-                                self.word_embeddings[token.text], local_embedding
+                                self.word_embeddings[token.text], local_embedding.to(flair.device)
                             )
                             if self.pooling == "fade":
                                 aggregated_embedding /= 2
